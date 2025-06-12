@@ -1,23 +1,26 @@
 import React, { useState } from "react";
 import { verifyCoupon } from "../mockapi/api";
 import "./product.css"
+import axios from "axios";
 
 const ReferralPage = () => {
+  const [buyer, setBuyer] = useState('');
+  const [amount, setAmount] = useState(0);
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(null);
   const [referrer, setReferrer] = useState(null);
   const [error, setError] = useState("");
 
-  const handleApplyCoupon = async () => {
-    setError("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await verifyCoupon(coupon);
-      setDiscount(response.discount);
-      setReferrer(response.user);
+      const res = await axios.post("http://localhost:5000/purchase", {amount, buyer, referrerCode: coupon});
+      setAmount(0);
+      setBuyer('');
+      setCoupon('');
+      console.log('product added successfully', res.data);
     } catch (err) {
-      setDiscount(null);
-      setReferrer(null);
-      setError("Invalid coupon code");
+      console.error("Failed to add user", err);
     }
   };
 
@@ -26,18 +29,48 @@ const ReferralPage = () => {
       <h1 className="title">Buy Product</h1>
       <p className="product-name">🌱 ESG Toolkit - $100</p>
 
-      <div className="input-group">
-        <label>Enter Referral Code:</label>
-        <input
-          type="text"
-          value={coupon}
-          onChange={(e) => setCoupon(e.target.value)}
-          placeholder="Enter your referral code"
-        />
-        <button className="apply-btn" onClick={handleApplyCoupon}>
-          Apply
+      <form onSubmit={handleSubmit} className="input-group">
+        <div className="form-field">
+          <label htmlFor="buyer">Buyer Name:</label>
+          <input
+            id="buyer"
+            type="text"
+            value={buyer}
+            onChange={(e) => setBuyer(e.target.value)}
+            placeholder="Enter your name"
+            required
+          />
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="amount">Amount:</label>
+          <input
+            id="amount"
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="Enter your amount"
+            required
+            min="0"
+          />
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="coupon">Referral Code:</label>
+          <input
+            id="coupon"
+            type="text"
+            value={coupon}
+            onChange={(e) => setCoupon(e.target.value)}
+            placeholder="Enter your referral code"
+            required
+          />
+        </div>
+
+        <button type="submit" className="apply-btn">
+          Submit
         </button>
-      </div>
+      </form>
 
       {error && <p className="error-text">{error}</p>}
 

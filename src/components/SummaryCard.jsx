@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Users, DollarSign, TrendingUp } from 'lucide-react';
 import { summaryData } from '../data/NewmockData';
 import './summarycard.css';
+import axios from 'axios';
 
 const SummaryCards = () => {
+
+  const [dashboardData, setDashboardData] = useState();
+
   function formatCurrency(amount) {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -17,24 +21,38 @@ const SummaryCards = () => {
     return new Intl.NumberFormat('en-US').format(num);
   }
 
+  const fetchDashboardData = async()=>{
+    try{
+        const resp = await axios.get('http://localhost:5000/users/dashboard/stats');
+        console.log('dashboard data', resp.data);
+        setDashboardData(resp.data);
+    }catch(error){
+      console.log('error', error);
+    }
+  }
+
+  useEffect(()=>{
+    fetchDashboardData();
+  }, [])
+
   const cards = [
     {
       title: 'Total Users',
-      value: formatNumber(summaryData.totalUsers),
+      value: dashboardData?.totalUsers,
       icon: Users,
       iconClass: 'card-icon-blue',
       change: '+12%'
     },
     {
       title: 'Total Business',
-      value: formatCurrency(summaryData.totalBusiness),
+      value: dashboardData?.totalBusiness,
       icon: TrendingUp,
       iconClass: 'card-icon-green',
       change: '+8.5%'
     },
     {
       title: 'Commission Paid',
-      value: formatCurrency(summaryData.totalCommissionPaid),
+      value: dashboardData?.totalCommissionPaid,
       icon: DollarSign,
       iconClass: 'card-icon-purple',
       change: '+15.3%'
@@ -55,10 +73,6 @@ const SummaryCards = () => {
               <div className={`summary-card-icon ${card.iconClass}`}>
                 <Icon className="summary-card-icon-svg" />
               </div>
-            </div>
-            <div className="summary-card-change">
-              <span className="summary-card-change-value">{card.change}</span>
-              <span className="summary-card-change-text">from last month</span>
             </div>
           </div>
         );
