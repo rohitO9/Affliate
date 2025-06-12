@@ -1,0 +1,192 @@
+.users-table-container {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.users-table-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.users-table-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.users-table-subtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.users-table-wrapper {
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table-head {
+  background-color: #f8fafc;
+}
+
+.users-table-th {
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.users-table-body {
+  background-color: white;
+}
+
+.users-table-row {
+  transition: background-color 0.2s ease;
+}
+
+.users-table-row:hover {
+  background-color: #f8fafc;
+}
+
+.users-table-row:not(:last-child) {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.users-table-td {
+  padding: 1rem 1.5rem;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #dbeafe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+}
+
+.user-avatar-text {
+  color: #1d4ed8;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.role-badge {
+  display: inline-flex;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+}
+
+.role-badge-purple {
+  background-color: #f3e8ff;
+  color: #7c3aed;
+}
+
+.role-badge-blue {
+  background-color: #dbeafe;
+  color: #2563eb;
+}
+
+.role-badge-gray {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.users-table-amount {
+  font-size: 0.875rem;
+  color: #111827;
+  font-weight: 500;
+}
+
+.status-badge {
+  display: inline-flex;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+}
+
+.status-badge-active {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.status-badge-inactive {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.team-tree-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #2563eb;
+  background-color: #eff6ff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.team-tree-btn:hover {
+  background-color: #dbeafe;
+}
+
+.team-tree-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .users-table-th,
+  .users-table-td {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .users-table-th {
+    font-size: 0.625rem;
+  }
+  
+  .user-name {
+    font-size: 0.75rem;
+  }
+  
+  .users-table-amount {
+    font-size: 0.75rem;
+  }
+  
+  .team-tree-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,95 @@
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+}
+
+.summary-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.summary-card-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.summary-card-value {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.summary-card-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon-blue {
+  background-color: #dbeafe;
+}
+
+.card-icon-green {
+  background-color: #dcfce7;
+}
+
+.card-icon-purple {
+  background-color: #f3e8ff;
+}
+
+.summary-card-icon-svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.card-icon-blue .summary-card-icon-svg {
+  color: #2563eb;
+}
+
+.card-icon-green .summary-card-icon-svg {
+  color: #16a34a;
+}
+
+.card-icon-purple .summary-card-icon-svg {
+  color: #9333ea;
+}
+
+.summary-card-change {
+  display: flex;
+  align-items: center;
+}
+
+.summary-card-change-value {
+  color: #16a34a;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.summary-card-change-text {
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+}
