@@ -4,12 +4,13 @@ import "./user.css";
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
-  const [formData, setFormData] = useState({ name: "", referredBy: "" });
+  const [formData, setFormData] = useState({ name: "", referredBy: "", referralCode: "" });
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/users");
+      const res = await axios.get("http://localhost:5000/users");
       setUsers(res.data);
+      console.log('resp of all user', res.data);
     } catch (err) {
       console.error("Failed to fetch users", err);
     }
@@ -18,8 +19,8 @@ const UsersPage = () => {
   const handleAddUser = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/users", formData);
-      setFormData({ name: "", referredBy: "" });
+      const res = await axios.post("http://localhost:5000/users", formData);
+      setFormData({ name: "", referredBy: "", referralCode: "" });
       fetchUsers();
     } catch (err) {
       console.error("Failed to add user", err);
@@ -37,16 +38,25 @@ const UsersPage = () => {
       <form onSubmit={handleAddUser} className="add-user-form">
         <input
           type="text"
-          placeholder="Enter user name"
+          placeholder="Enter user name*"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           required
         />
         <input
           type="text"
-          placeholder="Referral code (optional)"
+          placeholder="Referred By"
           value={formData.referredBy}
           onChange={(e) => setFormData({ ...formData, referredBy: e.target.value })}
+          
+        />
+
+<input
+          type="text"
+          placeholder="Referral code "
+          value={formData.referralCode}
+          onChange={(e) => setFormData({ ...formData, referralCode: e.target.value })}
+          
         />
         <button type="submit">Add User</button>
       </form>
